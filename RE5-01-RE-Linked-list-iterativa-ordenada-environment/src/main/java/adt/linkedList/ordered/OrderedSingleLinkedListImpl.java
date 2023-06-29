@@ -27,14 +27,34 @@ public class OrderedSingleLinkedListImpl<T extends Comparable<T>> extends Single
 
 	@Override
 	public T minimum() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T min = null;
+		if(!this.isEmpty()){
+			SingleLinkedListNode<T> aux = this.head;
+			min = aux.getData();
+			while(!aux.getNext().isNIL()){
+				if(aux.getData().compareTo(aux.getNext().getData()) > 0) {
+					min = aux.getNext().getData();
+				}
+				aux = aux.getNext();
+			}
+		}
+		return min;
 	}
 
 	@Override
 	public T maximum() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T max = null;
+		if(!this.isEmpty()){
+			SingleLinkedListNode<T> aux = this.head;
+			max = aux.getData();
+			while(!aux.getNext().isNIL()){
+				if(aux.getData().compareTo(aux.getNext().getData()) < 0) {
+					max = aux.getNext().getData();
+				}
+				aux = aux.getNext();
+			}
+		}
+		return max;
 	}
 
 	public Comparator<T> getComparator() {
